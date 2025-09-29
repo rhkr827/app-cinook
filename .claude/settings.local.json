@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm run electron:dev:*)",
+      "Bash(python:*)",
+      "Bash(pip install fastapi uvicorn python-multipart pydantic)",
+      "Bash(uv init:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run electron:build:*)",
+      "Bash(curl:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(npx --package=typescript tsc)",
+      "Bash(./node_modules/.bin/vite:*)",
+      "Bash(./main.exe)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

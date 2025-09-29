@@ -1,0 +1,84 @@
+{
+  "name": "app-chinook",
+  "version": "1.0.0",
+  "description": "Chinook Database Explorer with TypeScript, Vite, and Python backend",
+  "main": "electron.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
+    "dev-frontend": "vite",
+    "dev-backend": "cd backend && uvicorn app.app:app --reload --host 127.0.0.1 --port 8000",
+    "build": "npm run build-frontend && npm run build-backend && npm run build-electron",
+    "build-electron": "electron-builder",
+    "build-backend": "cd backend && uv run pyinstaller -y --clean main.spec && cd ..",
+    "build-frontend": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^19.1.15",
+    "@types/react-dom": "^19.1.9",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.1.0",
+    "concurrently": "^8.2.1",
+    "electron": "^38.2.0",
+    "electron-builder": "^24.6.4",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.2.2",
+    "vite": "^7.1.7",
+    "wait-on": "^7.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "chart.js": "^4.4.0",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "build": {
+    "appId": "com.example.app-chinook",
+    "productName": "Chinook Database Explorer",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.js",
+      "backend/dist/**/*",
+      "backend/app/**/*",
+      "!backend/.venv",
+      "!backend/__pycache__",
+      "!backend/app/__pycache__",
+      "!backend/build",
+      "!**/*.pyc",
+      "!**/*.pyo",
+      "!**/*.pyd"
+    ],
+    "extraResources": [
+      {
+        "from": "db/",
+        "to": "db/"
+      },
+      {
+        "from": "backend/dist/",
+        "to": "backend/dist/"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
