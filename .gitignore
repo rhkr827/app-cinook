@@ -13,6 +13,7 @@ dist-electron/
 build/
 backend/build/
 backend/dist/
+release/
 
 # Environment files
 .env

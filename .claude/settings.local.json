@@ -17,7 +17,9 @@
       "Bash(npx vite:*)",
       "Bash(npx --package=typescript tsc)",
       "Bash(./node_modules/.bin/vite:*)",
-      "Bash(./main.exe)"
+      "Bash(./main.exe)",
+      "Bash(find:*)",
+      "Bash(npm run build-electron:*)"
     ],
     "deny": [],
     "ask": []

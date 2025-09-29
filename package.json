@@ -1,6 +1,6 @@
 {
   "name": "app-chinook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chinook Database Explorer with TypeScript, Vite, and Python backend",
   "main": "electron.js",
   "scripts": {
@@ -42,8 +42,10 @@
     "appId": "com.example.app-chinook",
     "productName": "Chinook Database Explorer",
     "directories": {
-      "output": "dist-electron"
+      "output": "release"
     },
+    "compression": "maximum",
+    "removePackageScripts": true,
     "files": [
       "dist/**/*",
       "electron.js",
@@ -55,7 +57,9 @@
       "!backend/build",
       "!**/*.pyc",
       "!**/*.pyo",
-      "!**/*.pyd"
+      "!**/*.pyd",
+      "!node_modules/.cache",
+      "!**/.*"
     ],
     "extraResources": [
       {
@@ -71,14 +75,24 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
-      ]
+      ],
+      "requestedExecutionLevel": "asInvoker",
+      "compression": "maximum"
     },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": true
-    }
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "differentialPackage": false
+    },
+    "electronLanguages": [
+      "en",
+      "ko"
+    ]
   }
 }
